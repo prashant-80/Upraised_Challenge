@@ -14,6 +14,8 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // Rate limiting
 const limiter = rateLimit({
@@ -33,6 +35,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'UP', message: 'IMF Gadget API is operational' });
 });
+
+
 
 app.use(errorHandler);
 
