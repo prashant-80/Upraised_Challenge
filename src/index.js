@@ -25,6 +25,9 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
+app.get('/', (req, res) => {
+  res.status(200).json({ message: `Welcome to the IMF Gadget API go to ${process.env.API_URL}/api-docs to see the documentation and test it` });
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/gadgets', gadgetRoutes);
